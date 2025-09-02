@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_idil_home" 
+        name="Iley Restaurant  &amp; Hotel " 
+        web_icon="Idil,static/description/icon.png"
+        sequence="1"/>
+
+    <menuitem id="menu_idil_customers"
+              name="Customers"
+              parent="menu_idil_home"
+              sequence="2"/>
+
+    <menuitem id="menu_idil_customers_registration"
+              name="Customer Registration"
+              parent="menu_idil_customers"
+              action="action_idil_customer"
+              sequence="1"/>
+
+    <menuitem id="menu_action_customer_type"
+              name="Customer Type"
+              parent="menu_idil_customers"
+              action="action_customer_type"
+              sequence="2"/>
+
+
+    <menuitem id="menu_idil_accounting"
+              name="Accounting"
+              parent="menu_idil_home"
+              sequence="4"/>
+
+
+    <menuitem id="menu_idil_chart_account_tree"
+              name="Chart of Accounts"
+              parent="menu_idil_accounting"
+              action="action_idil_chart_account"
+              sequence="1"/>
+
+    <menuitem id="menu_idil_journal_entry"
+              name="360 -- All Transactions"
+              parent="menu_idil_accounting"
+              action="action_transaction_booking"
+
+              sequence="2"/>
+
+    <menuitem id="menu_journal_entry"
+              name="Journal Entries"
+              parent="menu_idil_accounting"
+              action="action_journal_entry"/>
+
+    <!-- Menu Item for Currency Exchange -->
+    <menuitem id="menu_currency_exchange"
+              name="Currency Exchange"
+              parent="menu_idil_accounting"
+              action="action_currency_exchange"/>
+
+    <menuitem id="menu_idil_trx_source"
+              name="Transaction Sources"
+              parent="menu_idil_accounting"
+              action="action_trx_source"
+              sequence="3"/>
+
+    <menuitem id="menu_payment_method"
+              name="Payment Methods"
+              parent="menu_idil_accounting"
+              action="action_payment_method" sequence="4"/>
+
+
+
+    <menuitem id="model_a_menu"
+              name="Delete Models"
+              action="action_delete_models"
+              parent="menu_idil_home"
+              sequence="1000"/>
+
+    <!-- Add the custom menu item -->
+<!--    <menuitem id="menu_custom_pos"-->
+<!--              name="Custom POS"-->
+<!--              parent="menu_idil_home"-->
+<!--              action="action_pos_config"-->
+<!--              sequence="1020"/>-->
+
+<!--    <menuitem id="menu_pos_session"-->
+<!--              name="POS Sessions"-->
+<!--              parent="menu_idil_home"-->
+<!--              action="action_pos_session"/>-->
+
+
+    <menuitem id="Manufacturing"
+              name="Menu Creation"
+              parent="menu_idil_home"
+              sequence="6"/>
+
+    <menuitem id="Manufacturing_products"
+              name="Create New Menu"
+              parent="Manufacturing"
+              sequence="1"
+              action="action_view_product"/>
+    <!-- Menu Item for BOM Creation -->
+
+
+    <!-- Root Menu for Reporting -->
+    <menuitem id="Reports_root"
+              name="Reporting Module"
+              parent="menu_idil_home"/>
+
+    <!-- Financial Reports Section -->
+    <menuitem id="FinancialReports"
+              name="Financial Reports"
+              parent="Reports_root"
+              sequence="1"/>
+
+    <!-- By Company Reports -->
+    <menuitem id="menu_by_company"
+              name="Reports by Company"
+              parent="FinancialReports"
+              sequence="1"/>
+
+    <menuitem id="menu_company_trial_balance"
+              name="Trial Balance by Company"
+              parent="menu_by_company"
+              sequence="1"
+              action="action_open_company_trial_balance_wizard"/>
+
+    <menuitem id="menu_company_income_statement"
+              name="Income Statement by Company"
+              parent="menu_by_company"
+              sequence="2"
+              action="action_open_income_statement_wizard"/>
+
+    <menuitem id="menu_company_balance_sheet"
+              name="Balance Sheet Report by Company"
+              parent="menu_by_company"
+              sequence="3"
+              action="balance_sheet_report_action"/>
+
+    <!-- By Currency Reports -->
+    <menuitem id="menu_by_currency"
+              name="Reports by Currency"
+              parent="FinancialReports"
+              sequence="2"/>
+
+    <menuitem id="menu_trial_balance"
+              name="Trial Balance by Currency"
+              parent="menu_by_currency"
+              sequence="1"
+              action="action_open_trial_balance_wizard"/>
+
+    <!-- System Reports Section -->
+    <menuitem id="OtherReports"
+              name="System Reports"
+              parent="Reports_root"
+              sequence="2"/>
+
+    <menuitem id="menu_transaction_report_root"
+              name="Account Statement Report"
+              parent="OtherReports"
+              sequence="1"
+              action="action_transaction_report_wizard"/>
+
+    <menuitem id="menu_transaction_report_summary_root"
+              name="Account Statement Summary Report"
+              parent="OtherReports"
+              sequence="2"
+              action="action_transaction_report_wizard_summary"/>
+
+    <menuitem id="menu_commission_report_wizard"
+              name="Commission Report"
+              parent="OtherReports"
+              sequence="3"
+              action="action_commission_report_wizard"/>
+
+    <!-- Balance Reports -->
+    <menuitem id="Reports_bs"
+              name="Account Balances"
+              parent="OtherReports"
+              sequence="4"
+              action="action_generate_account_balances"/>
+
+    <menuitem id="Reports_bs"
+              name="Daily Cost Profit Report"
+              parent="OtherReports"
+              sequence="5"
+              action="action_daily_cost_profit_report_wizard"/>
+
+
+    <menuitem id="menu_email_reporting_root" name="Email Configuration" sequence="100"/>
+
+    <!-- Submenu: Email Recipients -->
+    <menuitem id="menu_email_recipient"
+              name="Email Recipients"
+              parent="menu_email_reporting_root"
+              action="action_email_recipient"
+              sequence="20"/>
+
+<!--    <menuitem id="menu_bulk_sms_root" name="Send SMS" sequence="100"/>-->
+
+<!--    <menuitem id="menu_bulk_sms"-->
+<!--              name="Bulk SMS"-->
+<!--              parent="menu_bulk_sms_root"-->
+<!--              action="action_bulk_sms_wizard"/>-->
+
+</odoo>

@@ -1,0 +1,31 @@
+<!-- Define a form view to input recipient, subject, and body of the email -->
+<odoo>
+    <record id="view_custom_model_email_form" model="ir.ui.view">
+        <field name="name">custom.model.email.form</field>
+        <field name="model">idil.custom.model</field> <!-- Replace with your custom model -->
+        <field name="arch" type="xml">
+            <form string="Send Email">
+                <group>
+                    <field name="recipient_email"/>
+                    <field name="email_subject"/>
+                    <field name="email_body" widget="html"/>
+                </group>
+                <footer>
+                    <button name="send_custom_email" type="object" string="Send Email" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open the email form view -->
+    <record id="action_send_email_form" model="ir.actions.act_window">
+        <field name="name">Send Email</field>
+        <field name="res_model">idil.custom.model</field> <!-- Replace with your custom model -->
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_custom_model_email_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu item to access the custom model -->
+ </odoo>

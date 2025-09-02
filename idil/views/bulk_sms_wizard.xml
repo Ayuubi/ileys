@@ -1,0 +1,32 @@
+<odoo>
+    <record id="view_bulk_sms_wizard" model="ir.ui.view">
+        <field name="name">bulk.sms.wizard.form</field>
+        <field name="model">bulk.sms.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Send Bulk SMS">
+                <group>
+                    <field name="file"/>
+                    <field name="message"/>
+                    <field name="sender_id"/>
+
+                    <field name="response_file"/>
+                    <field name="response_filename"/>
+                    <field name="is_unicode"/>
+
+                </group>
+                <footer>
+                    <button name="send_bulk_sms" type="object" string="Send SMS" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bulk_sms_wizard" model="ir.actions.act_window">
+        <field name="name">Send Bulk SMS</field>
+        <field name="res_model">bulk.sms.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

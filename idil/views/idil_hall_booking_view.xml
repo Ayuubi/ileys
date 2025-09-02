@@ -1,0 +1,168 @@
+<odoo>
+    <!-- Hall Booking Form View -->
+    <record id="view_hall_booking_form" model="ir.ui.view">
+        <field name="name">idil.hall.booking.form</field>
+        <field name="model">idil.hall.booking</field>
+        <field name="arch" type="xml">
+            <form string="Hall Booking" class="oe_form">
+                <sheet>
+                    <header>
+                        <button name="%(action_hall_booking_payment_wizard)d" string="Add Payment" type="action"
+                                class="btn-primary"/>
+                        <!-- Add button for extra service amount -->
+                        <button name="action_open_extra_service_wizard"
+                                string="Add Extra Service Amount"
+                                type="object"
+                                class="btn-primary"/>
+                        <field name="status" widget="statusbar"
+                               statusbar_visible="draft,booked,confirmed,due,closed,canceled"
+                               readonly="1"/>
+                    </header>
+                    <h1>
+                        <field name="name" placeholder="Booking Number"/>
+
+                    </h1>
+
+                    <!-- Organizing Fields into Two Columns -->
+                    <group>
+                        <group string="Customer and Booking Details" col="2">
+
+                            <field name="invoice_number" placeholder="Insert Invoice Number"/>
+                            <field name="bank_reff" placeholder="Bank Reference Number"/>
+
+                            <field name="customer_id" placeholder="Select Customer"/>
+                            <field name="hall_id" placeholder="Select Hall"/>
+                            <field name="hall_event_id" placeholder="Select Event Type"/>
+
+                            <field name="booking_date" widget="date" placeholder="Select Booking Date"/>
+                            <field name="start_time" widget="datetime" placeholder="Start Time"/>
+                            <field name="end_time" widget="datetime" placeholder="End Time"/>
+                        </group>
+
+                        <group string="Payment and Pricing Information" col="2">
+                            <field name="no_of_guest" placeholder="Enter Number of Guests"/>
+                            <field name="price_per_guest" placeholder="Price Per Guests"/>
+                            <field name="total_price" readonly="1" class="oe_inline"/>
+                            <field name="payment_method_id" placeholder="Select Payment Method"/>
+                            <field name="account_number" placeholder="Account Number"/>
+                            <field name="amount" class="oe_inline"/>
+                            <field name="amount_paid" readonly="1" class="oe_inline"/>
+                            <field name="remaining_amount" readonly="1" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="facility_ids" widget="many2many_tags" placeholder="Select Facilities"/>
+                        </group>
+                    </group>
+
+
+                    <!-- One2many field to show payments -->
+                    <group string="Payments">
+                        <field name="payment_ids">
+                            <tree create="false" edit="true" delete="true"> <!-- Enabled edit -->
+                                <field name="payment_date"/>
+                                <field name="amount" sum="Total"/>
+                                <field name="payment_method_id"/>
+                                <field name="payment_reference"/>
+                            </tree>
+                        </field>
+                    </group>
+
+                    <!-- Extra Services Section -->
+                    <group string="Extra Services Information">
+                        <field name="extra_service_ids">
+                            <tree editable="bottom" string="Extra Services">
+                                <field name="payment_date" string="Extra Payment Date"/>
+                                <field name="payment_method_id"/>
+                                <field name="bank_reff"/>
+                                <field name="account_number"/>
+                                <field name="extra_service_amount" string="Extra Paid Amount"/>
+                                <field name="service_description"/>
+
+
+                            </tree>
+                        </field>
+                    </group>
+                    <group>
+                        <!-- Existing fields... -->
+                        <field name="extra_service_amount" readonly="1"/>
+                    </group>
+
+                    <separator string="Additional Information" colspan="2"/>
+
+                    <!-- Read-only fields for additional details -->
+                    <group>
+                        <field name="duration" readonly="1" string="Duration (Hours)" class="oe_inline"/>
+                        <field name="status" readonly="1" class="oe_inline"/>
+                    </group>
+                    <button name="generate_confirmation_slip_pdf"
+                            string="Print Confirmation Slip"
+                            type="object"
+                            class="btn-primary"/>
+
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Hall Booking Tree View -->
+    <record id="view_hall_booking_tree" model="ir.ui.view">
+        <field name="name">idil.hall.booking.tree</field>
+        <field name="model">idil.hall.booking</field>
+        <field name="arch" type="xml">
+            <tree string="Hall Bookings" decoration-danger="status == 'due'">
+                <field name="invoice_number"/>
+                <field name="bank_reff"/>
+                <field name="name"/>
+                <field name="customer_id"/>
+                <field name="hall_id"/>
+                <field name="hall_event_id"/>
+
+                <field name="booking_date" optional="show"/>
+                <field name="start_time" optional="show"/>
+                <field name="end_time" optional="show"/>
+                <field name="duration" optional="show"/>
+                <field name="no_of_guest" optional="show"/>
+                <field name="total_price" optional="show"/>
+                <field name="amount_paid" optional="show"/>
+                <field name="remaining_amount" optional="show"/>
+                <field name="extra_service_amount" optional="show"/>
+                <field name="status" widget="statusbar"
+                       statusbar_visible="draft,booked,confirmed,due,closed,canceled"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Hall Booking Action -->
+    <record id="action_hall_booking" model="ir.actions.act_window">
+        <field name="name">Hall Bookings</field>
+        <field name="res_model">idil.hall.booking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_extra_service_wizard_form" model="ir.ui.view">
+        <field name="name">idil.hall.extra.service.form</field>
+        <field name="model">idil.hall.extra.service</field>
+        <field name="arch" type="xml">
+            <form string="Add Extra Service Amount">
+                <group>
+                    <field name="booking_id" readonly="1"/>
+                    <field name="extra_service_amount"/>
+                    <field name="payment_method_id"/>
+                    <field name="account_number"/>
+                    <field name="bank_reff"/>
+
+                    <field name="payment_date"/>
+                    <field name="service_description"/>
+
+                </group>
+                <footer>
+                    <button string="Save" type="object" name="action_save_extra_service_amount" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

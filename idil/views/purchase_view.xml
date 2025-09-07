@@ -58,6 +58,8 @@
 
                                 <group class="oe_inline">
                                     <field name="account_number"/>
+                                     <field name="bank_reff"/>
+                                    
                                 </group>
 
 

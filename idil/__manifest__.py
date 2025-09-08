@@ -7,7 +7,7 @@
     "depends": ["mail", "point_of_sale", "base", "web"],
     "application": True,
     "sequence": -100,
-    "author": "MSLTS",
+    "author": "MDC",
     "assets": {
         "web.assets_common": [
             # Add any global SCSS or JS files here
